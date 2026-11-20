@@ -1,0 +1,22 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+node_modules
+/npm-debug.log*
+
+# Next.js build output and local envs
+.next
+out
+
+# IDEs and OS junk
+.vscode
+.idea
+.DS_Store
+
+*.sh
+*.md
+Dockerfile.dev
+Dockerfile.uat
+Dockerfile.prod

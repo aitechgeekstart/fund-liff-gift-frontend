@@ -1,0 +1,18 @@
+FROM node:24.11-alpine
+
+EXPOSE 3000
+
+RUN apk add --no-cache chromium nss freetype harfbuzz ca-certificates ttf-freefont qpdf
+
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+RUN mkdir -p /usr/src/app
+COPY package*.json /usr/src/app/
+RUN cd /usr/src/app/; npm install
+WORKDIR /usr/src/app
+COPY . /usr/src/app
+
+RUN npm run prod:build
+
+CMD [ "npm", "run", "prod:start" ]
