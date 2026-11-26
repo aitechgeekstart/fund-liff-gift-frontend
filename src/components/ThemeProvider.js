@@ -5,16 +5,21 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const primary = {
-  main: "#9e805e",
+  main: "#7f825a",
+  contrastText: "#fdf7dd",
+};
+
+const secondary = {
+  main: "#9c8a68",
   light: "#9d8a68",
   dark: "#7d6e53",
   contrastText: "#fff",
 };
 
-const secondary = {
-  main: "#ae9973",
+const tertiary = {
+  main: "#fdf7dd",
   dark: "#8d7c5d",
-  light: "#b6a381",
+  light: "#f4f4f0",
 };
 
 const yellow = {
@@ -29,12 +34,18 @@ const grey = {
   contrastText: "#fff",
 };
 
+const white = {
+  main: "#ffff",
+};
+
 const theme = createTheme({
   palette: {
     primary,
     secondary,
+    tertiary,
     yellow,
     grey,
+    white,
     contrastText: {
       default: "#3D3D3D",
     },
@@ -45,8 +56,9 @@ const theme = createTheme({
   typography: {
     fontFamily: "var(--font-noto-sans-thai), var(--font-noto-sans), sans-serif",
     htmlFontSize: 16,
-    body1: { fontSize: "14px" },
-    body2: { fontSize: "12px" },
+    body1: { fontSize: "16px" },
+    body2: { fontSize: "14px" },
+    caption: { fontSize: "10px" },
   },
   spacing: (factor) => {
     const spacingMap = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24 };

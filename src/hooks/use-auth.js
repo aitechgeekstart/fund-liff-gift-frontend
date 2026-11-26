@@ -1,12 +1,11 @@
 "use client";
 import { getApiPath } from "@/helpers";
-import useRecentFundsStore from "@/hooks/use-recent";
 import { intersection } from "lodash";
 import { createContext, useContext, useState } from "react";
 import useSWR from "swr";
 
 const API_PATHS = {
-  PROFILE_PATH: "/api/v2/liff/sessions/me",
+  PROFILE_PATH: "/api/v1/liff/sessions/me",
 };
 
 const AuthContext = createContext();
@@ -19,7 +18,6 @@ export function AuthProvider({ children }) {
 }
 
 function useAuthProvider() {
-  const { recentFunds, addRecentFund } = useRecentFundsStore();
   const [liffObject, setLiffObject] = useState(null);
 
   const can = (permissions = []) => {
@@ -89,7 +87,7 @@ function useAuthProvider() {
     API_PATHS.PROFILE_PATH,
     async (...args) => {
       const json = await fetcherWithAuth(...args);
-      return json.user;
+      return json;
     },
     {
       refreshInterval: 60000,
@@ -105,7 +103,5 @@ function useAuthProvider() {
     lineUser,
     lineUserError,
     mutateLineUser,
-    recentFunds,
-    addRecentFund,
   };
 }

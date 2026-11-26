@@ -1,0 +1,225 @@
+.privacy-page {
+  /*width: 100%;
+  min-height: 100vh;*/
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.privacy-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+
+  color: #000;
+
+  font-family:
+    "TH Sarabun New",
+    "Sarabun",
+    "Noto Sans Thai",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* =========================
+   Title
+   ========================= */
+
+.privacy-title {
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.privacy-title h1 {
+  margin: 0 0 4px;
+
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.privacy-title p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.privacy-title .privacy-for {
+  font-weight: 700;
+}
+
+/* =========================
+   Content
+   ========================= */
+
+.privacy-content {
+  width: 100%;
+}
+
+.privacy-content p {
+  margin: 0 0 10px;
+
+  font-size: 16px;
+  line-height: 1.7;
+
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* =========================
+   Sections
+   ========================= */
+
+.privacy-section {
+  margin: 24px 0 0;
+  padding: 0;
+}
+
+.privacy-section h2 {
+  margin: 0 0 9px;
+
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.privacy-section h3 {
+  margin: 12px 0 5px;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* =========================
+   Bullet List
+   ========================= */
+
+.privacy-list {
+  margin: 4px 0 12px;
+  padding-left: 27px;
+
+  list-style-type: disc;
+}
+
+.privacy-list li {
+  margin: 0 0 6px;
+  padding-left: 4px;
+
+  font-size: 16px;
+  line-height: 1.7;
+
+  text-align: justify;
+  text-justify: inter-word;
+  /*text-align: left;*/
+}
+
+/* =========================
+   Number List
+   ========================= */
+
+.privacy-number-list {
+  margin: 4px 0 12px;
+  padding-left: 30px;
+}
+
+.privacy-number-list li {
+  margin: 0 0 7px;
+  padding-left: 3px;
+
+  font-size: 16px;
+  line-height: 1.7;
+
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* =========================
+   Strong
+   ========================= */
+
+.privacy-content strong {
+  font-weight: 700;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .privacy-title h1 {
+    font-size: 20px;
+  }
+
+  .privacy-content p,
+  .privacy-list li,
+  .privacy-number-list li {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .privacy-section h2 {
+    font-size: 17px;
+  }
+
+  .privacy-section h3 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .privacy-title h1 {
+    font-size: 19px;
+  }
+
+  .privacy-title p,
+  .privacy-content p,
+  .privacy-list li,
+  .privacy-number-list li {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .privacy-section {
+    margin-top: 20px;
+  }
+
+  .privacy-list {
+    padding-left: 24px;
+  }
+
+  .privacy-number-list {
+    padding-left: 27px;
+  }
+}
+
+/* =========================
+   Print
+   ========================= */
+
+@media print {
+  .privacy-page {
+    background: #fff;
+  }
+
+  .privacy-container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .privacy-section {
+    break-inside: auto;
+  }
+
+  .privacy-list li,
+  .privacy-number-list li {
+    break-inside: avoid;
+  }
+}

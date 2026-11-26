@@ -3,12 +3,11 @@ import PrivacyNotice from "@/components/PrivacyNotice";
 import { Button } from "@/components/Registration";
 import TermAndCondition from "@/components/TermAndCondition";
 import CloseIcon from "@mui/icons-material/Close";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import {
   Alert,
   Box,
-  Checkbox,
   Container,
-  FormHelperText,
   Grid,
   Paper,
   Stack,
@@ -47,11 +46,6 @@ export default function VerificationPage(props) {
   const validateForm = () => {
     const keys = [
       {
-        value: "citizen_id",
-        label: "เลขบัตรประชาชน",
-        required: true,
-      },
-      {
         value: "mobile_number",
         label: "เบอร์โทรศัพท์",
         required: true,
@@ -59,12 +53,12 @@ export default function VerificationPage(props) {
       {
         value: "term_and_condition",
         label: "Term and Condition",
-        required: true,
+        required: false,
       },
       {
         value: "privacy_notice",
         label: "Policy Notice",
-        required: true,
+        required: false,
       },
     ];
     let formError = {};
@@ -84,7 +78,6 @@ export default function VerificationPage(props) {
   const handleSubmit = async () => {
     if (validateForm()) {
       const allParams = {
-        citizen_id: formData.citizen_id,
         mobile_number: formData.mobile_number,
       };
 
@@ -95,7 +88,10 @@ export default function VerificationPage(props) {
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container
+      maxWidth="xs"
+      sx={{ backgroundColor: (theme) => theme.palette.primary.light }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -106,8 +102,8 @@ export default function VerificationPage(props) {
         <NextImage
           src={"/images/logo.png"}
           alt="Logo Image"
-          height={160}
-          width={160}
+          height={130}
+          width={130}
           objectFit="contain"
         />
       </Box>
@@ -133,32 +129,21 @@ export default function VerificationPage(props) {
                 mb: 1,
                 fontWeight: 600,
                 fontSize: 26,
-                color: (theme) => theme.palette.primary.main,
+                color: (theme) => theme.palette.yellow.light,
               }}
             >
-              ยินดีต้อนรับเข้าสู่ระบบยืนยันตัวตน
+              ยินดีต้อนรับสู่ Pine Wealth Gift
             </Typography>
           </Grid>
           <Grid size={12} sx={{ textAlign: "center" }}>
             <Typography
               sx={{
                 mb: 1,
-                fontSize: 18,
-                color: (theme) => theme.palette.primary.dark,
+                fontSize: 14,
+                color: (theme) => theme.palette.yellow.light,
               }}
             >
-              สำหรับทำรายการผ่าน Line
-            </Typography>
-          </Grid>
-          <Grid size={12} sx={{ textAlign: "center", marginTop: "30px" }}>
-            <Typography
-              sx={{
-                mb: 1,
-                fontSize: 12,
-                color: (theme) => theme.palette.primary.dark,
-              }}
-            >
-              กรุณากรอกเลขบัตรประชาชนและเบอร์โทรศัพท์ เพื่อใช้สำหรับยืนยันตัวตน
+              กรุณากรอกเบอร์โทรศัพท์เพื่อเข้าใช้งานและรับของขวัญ
             </Typography>
           </Grid>
         </Grid>
@@ -175,51 +160,26 @@ export default function VerificationPage(props) {
           elevation={0}
           sx={{
             width: "100%",
+            mt: 6,
+            mb: 5,
             p: 3,
-            bgcolor: "transparent",
+            bgcolor: (theme) => theme.palette.white.main,
           }}
         >
           {(errorMessage || message) && (
             <Alert severity="error">{errorMessage || message}</Alert>
           )}
           <br />
+
           <Typography
             sx={{
               mb: 1,
               fontWeight: 600,
-              fontSize: 18,
+              fontSize: 16,
               color: (theme) => theme.palette.primary.dark,
             }}
           >
-            กรอกเลขบัตรประชาชน
-          </Typography>
-
-          <NumericFormat
-            fullWidth
-            autoComplete="off"
-            customInput={TextField}
-            value={formData.citizen_id}
-            onValueChange={(values) => onFormChange("citizen_id", values.value)}
-            placeholder="XXXXX XXXXXXXX"
-            isAllowed={(values) => values.value.length <= 13}
-            helperText={error.citizen_id}
-            error={!!error.citizen_id}
-            valueIsNumericString={true}
-            allowNegative={false}
-            allowLeadingZeros={true}
-            thousandSeparator={false}
-          />
-
-          <Typography
-            sx={{
-              mt: 3,
-              mb: 1,
-              fontWeight: 600,
-              fontSize: 18,
-              color: (theme) => theme.palette.primary.dark,
-            }}
-          >
-            กรอกเบอร์โทรศัพท์
+            กรอกเบอร์โทรศัพท์สำหรับยืนยันตัวตน
           </Typography>
 
           <NumericFormat
@@ -237,56 +197,6 @@ export default function VerificationPage(props) {
             allowLeadingZeros={true}
             thousandSeparator={false}
           />
-
-          <Box
-            sx={{
-              paddingTop: "10px",
-              justifyContent: "center",
-            }}
-          >
-            <Checkbox
-              sx={{ padding: "0 5px 0 0" }}
-              onChange={(event) =>
-                onFormChange("term_and_condition", event.target.checked)
-              }
-            />
-            <span
-              style={{
-                fontWeight: "bold",
-                color: "#9e805e",
-                alignS: "center",
-              }}
-              onClick={() => setOpenTermAndCondition(true)}
-            >
-              Term and Condition
-            </span>
-          </Box>
-          <FormHelperText error>{error.term_and_condition}</FormHelperText>
-
-          <Box
-            sx={{
-              paddingTop: "10px",
-              justifyContent: "center",
-            }}
-          >
-            <Checkbox
-              sx={{ padding: "0 5px 0 0" }}
-              onChange={(event) =>
-                onFormChange("privacy_notice", event.target.checked)
-              }
-            />
-            <span
-              style={{
-                fontWeight: "bold",
-                color: "#9e805e",
-                alignS: "center",
-              }}
-              onClick={() => setOpenPrivacyNotice(true)}
-            >
-              Policy Notice
-            </span>
-          </Box>
-          <FormHelperText error>{error.privacy_notice}</FormHelperText>
 
           <Modal
             open={openTermAndCondition}
@@ -313,7 +223,7 @@ export default function VerificationPage(props) {
           <Stack
             direction="column"
             spacing={2}
-            sx={{ mt: 5, alignItems: "center", justifyContent: "center" }}
+            sx={{ mt: 3, alignItems: "center", justifyContent: "center" }}
           >
             <Button
               variant="contained"
@@ -322,13 +232,16 @@ export default function VerificationPage(props) {
               onClick={() => handleSubmit()}
               loading={loading}
             >
-              ต่อไป
+              ยืนยัน
             </Button>
             <Button
-              variant="outlined"
+              variant="text"
               color="primary"
               onClick={() => liff.closeWindow()}
             >
+              <KeyboardBackspaceIcon
+                sx={{ fontSize: "inherit", marginRight: "5px" }}
+              />
               ย้อนกลับ
             </Button>
           </Stack>

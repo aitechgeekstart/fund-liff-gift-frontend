@@ -41,17 +41,14 @@ export default function Layout({ children }) {
   useEffect(() => {
     if (!auth?.lineUser) return;
     const { pathname } = window.location;
-    const firstRegistration = auth.lineUser.is_new_user;
-    const weekend = !auth.lineUser.open_for_line_order;
-    if (weekend) {
-      router.replace("/notice");
-    } else if (firstRegistration) {
+    const firstRegistration = auth.lineUser.is_new_customer;
+    if (firstRegistration) {
       if (!pathname.includes("first_registration")) {
         router.replace("/first_registration");
       }
     } else if (pathname === "/" || pathname.length <= 1) {
       const timer = setTimeout(() => {
-        router.replace("/menu");
+        router.replace("/gifts");
       }, 1000);
       return () => clearTimeout(timer);
     }

@@ -1,5 +1,5 @@
 "use client";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function Layout({ children }) {
   return (
@@ -9,27 +9,7 @@ export default function Layout({ children }) {
         bgcolor: "#fff",
       }}
     >
-      {/* Top Navbar */}
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: (theme) => theme.palette.primary.main,
-          boxShadow: "none",
-          py: 0.5,
-        }}
-      >
-        <Toolbar sx={{ justifyContent: "center" }}>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ color: "#FFF", fontWeight: "bold", fontSize: "1.25rem" }}
-          >
-            VERIFICATION
-          </Typography>
-        </Toolbar>
-      </AppBar>
-
-      <Box sx={{ pb: 3, pt: 3 }}>{children}</Box>
+      <Box>{children}</Box>
     </Box>
   );
 }

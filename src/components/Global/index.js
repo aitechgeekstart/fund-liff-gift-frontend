@@ -2,6 +2,7 @@ import Autocomplete from "./Autocomplete";
 import AutocompleteWithSearch from "./AutocompleteWithSearch";
 import Button from "./Button";
 import CardHeader from "./CardHeader";
+import CheckLayoutPermission from "./CheckLayoutPermission";
 import DatePicker from "./DatePicker";
 import FormData from "./FormData";
 import FormLabel from "./FormLabel";
@@ -17,6 +18,7 @@ export {
   AutocompleteWithSearch,
   Button,
   CardHeader,
+  CheckLayoutPermission,
   DatePicker,
   FormData,
   FormLabel,

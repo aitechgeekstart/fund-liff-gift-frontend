@@ -1,4 +1,5 @@
 import { Button } from "@/components/Registration";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import {
   Alert,
   Box,
@@ -100,19 +101,21 @@ export default function OTPVerification(props) {
       setErrorMessage("Please enter a 6-digit OTP code.");
       return;
     }
-    submit({ otp: otp });
+    submit({ mobile_number: initialData.mobile_number, otp: otp });
   };
 
   const handleResend = () => {
     const _params = {
-      citizen_id: initialData.citizen_id,
       mobile_number: initialData.mobile_number,
     };
     resendOtp(_params);
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container
+      maxWidth="xs"
+      sx={{ backgroundColor: (theme) => theme.palette.primary.light }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -123,8 +126,8 @@ export default function OTPVerification(props) {
         <NextImage
           src={"/images/logo.png"}
           alt="Logo Image"
-          height={160}
-          width={160}
+          height={130}
+          width={130}
           objectFit="contain"
         />
       </Box>
@@ -150,7 +153,7 @@ export default function OTPVerification(props) {
                 mb: 1,
                 fontWeight: 600,
                 fontSize: 26,
-                color: (theme) => theme.palette.primary.main,
+                color: (theme) => theme.palette.yellow.light,
               }}
             >
               ระบบได้ทำการส่ง OTP
@@ -161,7 +164,7 @@ export default function OTPVerification(props) {
               sx={{
                 mb: 1,
                 fontSize: 18,
-                color: (theme) => theme.palette.primary.dark,
+                color: (theme) => theme.palette.yellow.light,
               }}
             >
               ผ่านทาง SMS กรุณากรอก OTP เพื่อยืนยันตัวตน
@@ -181,6 +184,8 @@ export default function OTPVerification(props) {
           elevation={0}
           sx={{
             width: "100%",
+            mt: 3,
+            mb: 3,
             p: 3,
             bgcolor: "transparent",
           }}
@@ -214,10 +219,9 @@ export default function OTPVerification(props) {
           {/* REF NO */}
           <Typography
             sx={{
-              color: "#999",
+              color: (theme) => theme.palette.white.main,
               fontSize: "0.72rem",
               letterSpacing: "0.06em",
-              mb: 4,
               mt: 2,
               textAlign: "center",
             }}
@@ -225,7 +229,7 @@ export default function OTPVerification(props) {
             OTP REF : {initialData.otp_reference_code}
           </Typography>
 
-          <Stack spacing={2} sx={{ mt: 10 }}>
+          <Stack spacing={2} sx={{ mt: 6 }}>
             <Button
               fullWidth
               variant="contained"
@@ -234,14 +238,14 @@ export default function OTPVerification(props) {
               onClick={handleVerify}
               loading={loading}
             >
-              Verify Code
+              ยืนยัน
             </Button>
 
             <Button
               fullWidth
               variant="outlined"
               loadingPosition="start"
-              color="primary"
+              color="white"
               onClick={handleResend}
               loading={loading}
               disabled={countdown !== 0}
@@ -251,9 +255,12 @@ export default function OTPVerification(props) {
 
             <Button
               variant="text"
-              color="primary"
+              color="white"
               onClick={() => onFormChange("otp_reference_code", "")}
             >
+              <KeyboardBackspaceIcon
+                sx={{ fontSize: "inherit", marginRight: "5px" }}
+              />
               ย้อนกลับ
             </Button>
           </Stack>
