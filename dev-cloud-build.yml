@@ -4,7 +4,7 @@ steps:
     args:
       - "-c"
       - |
-        docker pull asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-gift-frontend:latest || exit 0
+        docker pull asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-liff-gift-frontend:latest || exit 0
   - name: gcr.io/cloud-builders/docker
     timeout: 1200s
     args:
@@ -13,16 +13,16 @@ steps:
         "-f",
         "Dockerfile.dev",
         "-t",
-        "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-gift-frontend",
+        "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-liff-gift-frontend",
         "--cache-from",
-        "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-gift-frontend:latest",
+        "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-liff-gift-frontend:latest",
         ".",
       ]
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
-        "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-gift-frontend",
+        "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-liff-gift-frontend",
       ]
   - name: "gcr.io/cloud-builders/gcloud"
     id: "Delete Non-Latest Images"
@@ -30,21 +30,21 @@ steps:
     args:
       - "./delete_non_latest.sh"
       - "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia"
-      - "dev-fund-gift-frontend"
+      - "dev-fund-liff-gift-frontend"
       - "ramssol-internal-environment"
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:alpine"
     entrypoint: gcloud
     args:
       - "run"
       - "deploy"
-      - "dev-fund-gift-frontend"
+      - "dev-fund-liff-gift-frontend"
       - "--region"
       - "asia-southeast1"
       - "--platform"
       - "managed"
       - "--allow-unauthenticated"
       - "--image"
-      - "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-gift-frontend"
+      - "asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-liff-gift-frontend"
       - "--project"
       - "ramssol-internal-environment"
       - "--memory"
@@ -55,4 +55,4 @@ steps:
       - "3"
 timeout: 1200s
 images:
-  - asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-gift-frontend
+  - asia-southeast1-docker.pkg.dev/ramssol-internal-environment/asia/dev-fund-liff-gift-frontend
